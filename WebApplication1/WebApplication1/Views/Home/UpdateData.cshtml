@@ -1,0 +1,56 @@
+﻿@model List<WebApplication1.user>
+
+@{
+    ViewBag.Title = "UpdateData";
+}
+
+<h2>@ViewBag.Message</h2>
+
+<table>
+    <tr>
+        <th>User Id</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+    </tr>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.userId</td>
+            <td>@user.firstname</td>
+            <td>@user.lastname</td>
+            <td>@user.email</td>
+        </tr>
+    }
+</table>
+
+
+@using (Html.BeginForm("UpdateUser", "Controllers.HomeController", FormMethod.Post))
+{
+    <div class="form-group">
+        <label for="user">Select User:</label>
+        @Html.DropDownList("userId", (SelectList)ViewBag.UserList, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label for="firstname">Firstname</label>
+        <input type="text" class="form-control" id="firstname" placeholder="Enter Firstname" name="firstname">
+    </div>
+
+    <div class="form-group">
+        <label for="lastname">Lastname</label>
+        <input type="text" class="form-control" id="lastname" placeholder="Enter Lastname" name="lastname">
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email">
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter Password" name="password">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+}
